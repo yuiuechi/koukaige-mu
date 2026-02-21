@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Tetris</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="left-panel">
+            <h1 class="glow-text">NEON TETRIS</h1>
+            <div class="stats">
+                <p>SCORE: <span id="score" class="glow-text-sm">0</span></p>
+                <p>LEVEL: <span id="level" class="glow-text-sm">1</span></p>
+                <p>LINES: <span id="lines" class="glow-text-sm">0</span></p>
+            </div>
+            <div class="controls-hint">
+                <p>← → : 移動</p>
+                <p>↑ : 回転</p>
+                <p>↓ : 落下</p>
+                <p>Space : 一気に落下</p>
+            </div>
+            <button id="start-btn" class="neon-btn">START</button>
+        </div>
+        <div class="canvas-container">
+            <canvas id="tetris" width="300" height="300"></canvas>
+            <div id="game-over" class="hidden">
+                <h2 class="glow-text">GAME OVER</h2>
+            </div>
+        </div>
+        <div class="right-panel">
+            <h3>NEXT</h3>
+            <canvas id="next-piece" width="120" height="120"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

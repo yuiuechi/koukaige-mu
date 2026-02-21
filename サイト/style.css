@@ -1,0 +1,225 @@
+:root {
+    --bg-dark: #070714;
+    --neon-blue: #00ffff;
+    --neon-pink: #ff00ff;
+    --neon-purple: #8a2be2;
+    --text-main: #f0f0ff;
+    --text-muted: #8888aa;
+    --card-bg: rgba(20, 20, 40, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Orbitron', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 背景エフェクト */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 50% 10%, rgba(138, 43, 226, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1), transparent 40%);
+    z-index: -1;
+}
+
+/* ヘッダー */
+.header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+    letter-spacing: 2px;
+}
+
+/* メインコンテンツ・グリッド */
+.main-content {
+    flex: 1;
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* ゲームカード */
+.game-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    perspective: 1000px;
+}
+
+.card-inner {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+.game-card:hover .card-inner {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+/* カード画像部分（背景プレースホルダー） */
+.card-image {
+    height: 160px;
+    background-color: #111;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+.tetris-bg {
+    background-image: url('tetris/pinocchio.avif');
+}
+
+.placeholder-bg-1 {
+    background: linear-gradient(45deg, #2b1055, #7597de);
+}
+
+.placeholder-bg-2 {
+    background: linear-gradient(45deg, #1c0522, #b92b27);
+}
+
+.placeholder-bg-3 {
+    background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
+}
+
+.game-card:hover .overlay {
+    opacity: 0.5;
+}
+
+/* カードテキスト */
+.card-content {
+    padding: 24px;
+    position: relative;
+}
+
+.game-title {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.game-card:hover .game-title {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+.game-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-family: sans-serif;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* プレイボタン */
+.play-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.game-card:hover .play-btn {
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* 未解放（無効）カードのスタイル */
+.game-card.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.game-card.disabled:hover .card-inner {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+}
+
+.game-card.disabled:hover .game-title {
+    color: #fff;
+    text-shadow: none;
+}
+
+.game-card.disabled .play-btn {
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+}
+
+.game-card.disabled:hover .play-btn {
+    background: transparent;
+    color: var(--text-muted);
+    box-shadow: none;
+}
+
+/* グローテキスト一括 */
+.glow-text {
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--neon-pink),
+        0 0 40px var(--neon-pink);
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: sans-serif;
+}

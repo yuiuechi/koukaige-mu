@@ -1,0 +1,171 @@
+/* =====================
+   ランディングページ専用CSS
+   ===================== */
+
+:root {
+    --neon-blue: #00e5ff;
+    --neon-pink: #ff00c8;
+    --neon-green: #39ff14;
+    --bg-night: #050510;
+    --text-main: #f0f0ff;
+    --btn-border: rgba(0, 229, 255, 0.8);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-night);
+    color: var(--text-main);
+    font-family: 'Orbitron', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ドット絵Canvasを全面に */
+#pixel-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    image-rendering: pixelated;
+}
+
+/* 中央のコンテンツ */
+.entrance-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.entrance-box {
+    text-align: center;
+    padding: 60px 80px;
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 16px;
+    background: rgba(5, 5, 20, 0.6);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px rgba(0, 229, 255, 0.05), inset 0 0 30px rgba(0, 0, 0, 0.3);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* アイコン */
+.portal-icon {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 20px;
+    animation: spin 10s linear infinite;
+    display: inline-block;
+    color: var(--neon-blue);
+    text-shadow: 0 0 20px var(--neon-blue);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* タイトル */
+.portal-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    margin-bottom: 14px;
+}
+
+.glow-text {
+    color: #fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px #fff,
+        0 0 30px var(--neon-pink),
+        0 0 60px var(--neon-pink);
+}
+
+.portal-sub {
+    font-size: 0.95rem;
+    color: rgba(200, 200, 255, 0.6);
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    font-family: sans-serif;
+}
+
+/* 入口ボタン */
+.enter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 40px;
+    border: 2px solid var(--btn-border);
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.enter-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--neon-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.enter-btn:hover {
+    color: var(--bg-night);
+    box-shadow: 0 0 25px var(--neon-blue), 0 0 50px rgba(0, 229, 255, 0.3);
+}
+
+.enter-btn:hover::before {
+    transform: scaleX(1);
+}
+
+.arrow {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.enter-btn:hover .arrow {
+    transform: translateX(6px);
+}
