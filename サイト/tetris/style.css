@@ -21,24 +21,48 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     background-image:
         radial-gradient(circle at 50% 50%, rgba(20, 20, 60, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%),
         linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
     background-size: 100% 100%, 30px 30px, 30px 30px;
+    touch-action: none;
+    /* ページ全体のスクロール・ズームを無効化 */
+    user-select: none;
+}
+
+/* ==========================
+   デスクトップレイアウト
+   ========================== */
+.top-bar {
+    display: none;
+}
+
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: flex;
 }
 
 .game-container {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 0;
     background: var(--panel-bg);
     padding: 30px;
     border-radius: 15px;
     border: 1px solid var(--border-color);
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+}
+
+.game-area {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .left-panel,
@@ -108,6 +132,9 @@ h3 {
     margin-bottom: 5px;
 }
 
+/* ==========================
+   ボタン共通スタイル
+   ========================== */
 .neon-btn {
     background: transparent;
     color: var(--neon-pink);
@@ -123,12 +150,16 @@ h3 {
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.2), inset 0 0 10px rgba(255, 0, 255, 0.2);
 }
 
-.neon-btn:hover {
+.neon-btn:hover,
+.neon-btn:active {
     background: var(--neon-pink);
     color: #fff;
     box-shadow: 0 0 20px var(--neon-pink), inset 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+/* ==========================
+   グロー共通スタイル
+   ========================== */
 .glow-text {
     color: #fff;
     text-shadow:
@@ -143,6 +174,9 @@ h3 {
     text-shadow: 0 0 5px var(--neon-green);
 }
 
+/* ==========================
+   ゲームオーバーオーバーレイ
+   ========================== */
 #game-over {
     position: absolute;
     top: 0;
@@ -166,4 +200,148 @@ h3 {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
     margin: 0 auto;
+}
+
+/* ==========================
+   スマホ用スタイル
+   ========================== */
+@media (max-width: 700px) {
+    body {
+        align-items: flex-start;
+        overflow: auto;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: flex;
+    }
+
+    .top-bar {
+        display: block;
+    }
+
+    .game-container {
+        width: 100%;
+        min-height: 100dvh;
+        border-radius: 0;
+        padding: 12px 10px;
+        gap: 10px;
+        background: var(--panel-bg);
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 上部ヘッダー */
+    .top-bar {
+        width: 100%;
+        text-align: center;
+        padding-bottom: 8px;
+    }
+
+    .top-bar h1 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    .stats-inline {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        font-size: 11px;
+        color: var(--text-color);
+        flex-wrap: wrap;
+    }
+
+    /* ゲームエリア（キャンバスだけ） */
+    .game-area {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* キャンバスを画面幅に合わせてスケール */
+    .canvas-container {
+        width: min(300px, 95vw);
+        height: min(300px, 95vw);
+    }
+
+    #tetris {
+        width: min(300px, 95vw);
+        height: min(300px, 95vw);
+    }
+
+    /* ==========================
+       方向パッド（Dpad）
+       ========================== */
+    .mobile-controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 20px;
+    }
+
+    #start-btn-mobile {
+        font-size: 14px;
+        padding: 10px 30px;
+        width: 80%;
+    }
+
+    .dpad {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .dpad-row {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .dpad-btn {
+        width: 72px;
+        height: 72px;
+        font-size: 24px;
+        background: rgba(0, 255, 255, 0.08);
+        color: var(--neon-blue);
+        border: 2px solid rgba(0, 255, 255, 0.3);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.1s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .dpad-btn:active {
+        background: rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 12px var(--neon-blue);
+        transform: scale(0.93);
+    }
+
+    /* 一気に落とすボタン（大きめ） */
+    .drop-btn {
+        width: 100px;
+        color: var(--neon-pink);
+        border-color: rgba(255, 0, 255, 0.4);
+    }
+
+    .drop-btn:active {
+        background: rgba(255, 0, 255, 0.3);
+        box-shadow: 0 0 12px var(--neon-pink);
+    }
+
+    /* ゆっくり落とすボタン */
+    .soft-drop-btn {
+        width: 200px;
+        height: 52px;
+        font-size: 18px;
+    }
 }

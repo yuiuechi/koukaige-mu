@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Neon Tetris</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -11,32 +11,65 @@
 
 <body>
     <div class="game-container">
-        <div class="left-panel">
-            <h1 class="glow-text">NEON TETRIS</h1>
-            <div class="stats">
-                <p>SCORE: <span id="score" class="glow-text-sm">0</span></p>
-                <p>LEVEL: <span id="level" class="glow-text-sm">1</span></p>
-                <p>LINES: <span id="lines" class="glow-text-sm">0</span></p>
-            </div>
-            <div class="controls-hint">
-                <p>← → : 移動</p>
-                <p>↑ : 回転</p>
-                <p>↓ : 落下</p>
-                <p>Space : 一気に落下</p>
-            </div>
-            <button id="start-btn" class="neon-btn">START</button>
-        </div>
-        <div class="canvas-container">
-            <canvas id="tetris" width="300" height="300"></canvas>
-            <div id="game-over" class="hidden">
-                <h2 class="glow-text">GAME OVER</h2>
+        <!-- 上部ヘッダー（スマホ時はここに全部入る） -->
+        <div class="top-bar">
+            <h1 class="glow-text">TETRIS PUZZLE</h1>
+            <div class="stats-inline">
+                <span>SCORE: <span id="score" class="glow-text-sm">0</span></span>
+                <span>LEVEL: <span id="level" class="glow-text-sm">1</span></span>
+                <span>REMAIN: <span id="lines" class="glow-text-sm">100</span></span>
             </div>
         </div>
-        <div class="right-panel">
-            <h3>NEXT</h3>
-            <canvas id="next-piece" width="120" height="120"></canvas>
+
+        <!-- メイン（キャンバス + サイドパネル） -->
+        <div class="game-area">
+            <!-- デスクトップ用左パネル -->
+            <div class="left-panel desktop-only">
+                <h1 class="glow-text">TETRIS PUZZLE</h1>
+                <div class="stats">
+                    <p>SCORE: <span id="score-d" class="glow-text-sm">0</span></p>
+                    <p>LEVEL: <span id="level-d" class="glow-text-sm">1</span></p>
+                    <p>REMAIN: <span id="lines-d" class="glow-text-sm">100</span></p>
+                </div>
+                <div class="controls-hint">
+                    <p>← → : 移動</p>
+                    <p>↓ : 落下</p>
+                    <p>Space : 一気に落下</p>
+                </div>
+                <button id="start-btn" class="neon-btn">START</button>
+            </div>
+
+            <!-- キャンバスエリア -->
+            <div class="canvas-container">
+                <canvas id="tetris" width="300" height="300"></canvas>
+                <div id="game-over" class="hidden">
+                    <h2 class="glow-text">GAME OVER</h2>
+                </div>
+            </div>
+
+            <!-- デスクトップ用右パネル -->
+            <div class="right-panel desktop-only">
+                <h3>NEXT</h3>
+                <canvas id="next-piece" width="120" height="120"></canvas>
+            </div>
+        </div>
+
+        <!-- スマホ用ボタンエリア -->
+        <div class="mobile-controls mobile-only">
+            <button id="start-btn-mobile" class="neon-btn">START</button>
+            <div class="dpad">
+                <div class="dpad-row">
+                    <button id="btn-left" class="dpad-btn">◀</button>
+                    <button id="btn-drop" class="dpad-btn drop-btn">▼▼</button>
+                    <button id="btn-right" class="dpad-btn">▶</button>
+                </div>
+                <div class="dpad-row">
+                    <button id="btn-down" class="dpad-btn soft-drop-btn">▼</button>
+                </div>
+            </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 

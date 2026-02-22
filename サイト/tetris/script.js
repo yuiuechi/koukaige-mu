@@ -17,10 +17,10 @@ targetImage.onload = () => {
 
 // 正解の25個のピース配置データ (10x10のグリッドの絶対座標)
 // Y値が大きい（下段）ものから順に落ちてくるようにソートしてキューに入れる
-const puzzleSolution = [{"name":"I","cells":[[19,16],[19,17],[19,18],[19,19]]},{"name":"J","cells":[[9,17],[9,18],[8,19],[9,19]]},{"name":"I","cells":[[15,19],[16,19],[17,19],[18,19]]},{"name":"J","cells":[[10,18],[10,19],[11,19],[12,19]]},{"name":"T","cells":[[17,17],[16,18],[17,18],[18,18]]},{"name":"I","cells":[[16,14],[16,15],[16,16],[16,17]]},{"name":"S","cells":[[7,18],[8,18],[6,19],[7,19]]},{"name":"I","cells":[[10,14],[10,15],[10,16],[10,17]]},{"name":"S","cells":[[5,18],[6,18],[4,19],[5,19]]},{"name":"L","cells":[[11,16],[11,17],[11,18],[12,18]]},{"name":"T","cells":[[18,15],[17,16],[18,16],[18,17]]},{"name":"Z","cells":[[15,17],[14,18],[15,18],[14,19]]},{"name":"T","cells":[[7,16],[6,17],[7,17],[8,17]]},{"name":"I","cells":[[8,13],[8,14],[8,15],[8,16]]},{"name":"T","cells":[[19,13],[18,14],[19,14],[19,15]]},{"name":"L","cells":[[12,17],[13,17],[13,18],[13,19]]},{"name":"L","cells":[[10,13],[11,13],[11,14],[11,15]]},{"name":"I","cells":[[7,12],[7,13],[7,14],[7,15]]},{"name":"T","cells":[[5,15],[5,16],[6,16],[5,17]]},{"name":"I","cells":[[9,13],[9,14],[9,15],[9,16]]},{"name":"S","cells":[[3,18],[4,18],[2,19],[3,19]]},{"name":"T","cells":[[6,13],[5,14],[6,14],[6,15]]},{"name":"Z","cells":[[15,15],[14,16],[15,16],[14,17]]},{"name":"I","cells":[[0,16],[0,17],[0,18],[0,19]]},{"name":"J","cells":[[13,14],[13,15],[12,16],[13,16]]},{"name":"Z","cells":[[2,17],[1,18],[2,18],[1,19]]},{"name":"J","cells":[[17,13],[18,13],[17,14],[17,15]]},{"name":"I","cells":[[14,12],[14,13],[14,14],[14,15]]},{"name":"I","cells":[[1,14],[1,15],[1,16],[1,17]]},{"name":"O","cells":[[10,11],[11,11],[10,12],[11,12]]},{"name":"I","cells":[[15,11],[15,12],[15,13],[15,14]]},{"name":"T","cells":[[16,11],[16,12],[17,12],[16,13]]},{"name":"J","cells":[[0,13],[1,13],[0,14],[0,15]]},{"name":"O","cells":[[18,11],[19,11],[18,12],[19,12]]},{"name":"J","cells":[[12,13],[13,13],[12,14],[12,15]]},{"name":"J","cells":[[13,10],[13,11],[12,12],[13,12]]},{"name":"O","cells":[[3,16],[4,16],[3,17],[4,17]]},{"name":"L","cells":[[2,15],[3,15],[4,15],[2,16]]},{"name":"L","cells":[[14,10],[15,10],[16,10],[14,11]]},{"name":"T","cells":[[4,12],[4,13],[5,13],[4,14]]},{"name":"L","cells":[[17,10],[18,10],[19,10],[17,11]]},{"name":"O","cells":[[18,8],[19,8],[18,9],[19,9]]},{"name":"I","cells":[[14,9],[15,9],[16,9],[17,9]]},{"name":"J","cells":[[9,10],[9,11],[8,12],[9,12]]},{"name":"S","cells":[[17,7],[18,7],[16,8],[17,8]]},{"name":"I","cells":[[15,5],[15,6],[15,7],[15,8]]},{"name":"O","cells":[[2,13],[3,13],[2,14],[3,14]]},{"name":"J","cells":[[10,10],[11,10],[12,10],[12,11]]},{"name":"I","cells":[[16,4],[16,5],[16,6],[16,7]]},{"name":"Z","cells":[[14,7],[13,8],[14,8],[13,9]]},{"name":"T","cells":[[19,5],[18,6],[19,6],[19,7]]},{"name":"I","cells":[[19,1],[19,2],[19,3],[19,4]]},{"name":"Z","cells":[[18,4],[17,5],[18,5],[17,6]]},{"name":"J","cells":[[10,8],[10,9],[11,9],[12,9]]},{"name":"S","cells":[[6,11],[7,11],[5,12],[6,12]]},{"name":"T","cells":[[11,6],[10,7],[11,7],[11,8]]},{"name":"T","cells":[[10,4],[10,5],[11,5],[10,6]]},{"name":"I","cells":[[12,5],[12,6],[12,7],[12,8]]},{"name":"J","cells":[[6,10],[7,10],[8,10],[8,11]]},{"name":"O","cells":[[11,3],[12,3],[11,4],[12,4]]},{"name":"I","cells":[[6,9],[7,9],[8,9],[9,9]]},{"name":"T","cells":[[16,3],[17,3],[18,3],[17,4]]},{"name":"L","cells":[[18,1],[16,2],[17,2],[18,2]]},{"name":"J","cells":[[6,7],[6,8],[7,8],[8,8]]},{"name":"L","cells":[[17,0],[18,0],[19,0],[17,1]]},{"name":"T","cells":[[13,5],[13,6],[14,6],[13,7]]},{"name":"T","cells":[[1,11],[0,12],[1,12],[2,12]]},{"name":"T","cells":[[2,11],[3,11],[4,11],[3,12]]},{"name":"J","cells":[[7,7],[8,7],[9,7],[9,8]]},{"name":"L","cells":[[10,2],[11,2],[12,2],[10,3]]},{"name":"Z","cells":[[15,3],[14,4],[15,4],[14,5]]},{"name":"T","cells":[[7,5],[6,6],[7,6],[8,6]]},{"name":"J","cells":[[3,10],[4,10],[5,10],[5,11]]},{"name":"T","cells":[[13,2],[13,3],[14,3],[13,4]]},{"name":"T","cells":[[9,4],[8,5],[9,5],[9,6]]},{"name":"T","cells":[[4,8],[3,9],[4,9],[5,9]]},{"name":"L","cells":[[0,10],[1,10],[2,10],[0,11]]},{"name":"S","cells":[[2,8],[3,8],[1,9],[2,9]]},{"name":"T","cells":[[5,6],[4,7],[5,7],[5,8]]},{"name":"O","cells":[[14,1],[15,1],[14,2],[15,2]]},{"name":"T","cells":[[0,7],[0,8],[1,8],[0,9]]},{"name":"I","cells":[[10,1],[11,1],[12,1],[13,1]]},{"name":"S","cells":[[8,3],[9,3],[7,4],[8,4]]},{"name":"J","cells":[[3,5],[3,6],[2,7],[3,7]]},{"name":"T","cells":[[4,4],[4,5],[5,5],[4,6]]},{"name":"I","cells":[[10,0],[11,0],[12,0],[13,0]]},{"name":"J","cells":[[6,3],[7,3],[6,4],[6,5]]},{"name":"J","cells":[[14,0],[15,0],[16,0],[16,1]]},{"name":"L","cells":[[9,1],[7,2],[8,2],[9,2]]},{"name":"J","cells":[[5,2],[6,2],[5,3],[5,4]]},{"name":"T","cells":[[1,5],[0,6],[1,6],[1,7]]},{"name":"L","cells":[[1,4],[2,4],[2,5],[2,6]]},{"name":"S","cells":[[8,0],[9,0],[7,1],[8,1]]},{"name":"J","cells":[[1,3],[2,3],[3,3],[3,4]]},{"name":"I","cells":[[0,2],[0,3],[0,4],[0,5]]},{"name":"J","cells":[[2,2],[3,2],[4,2],[4,3]]},{"name":"L","cells":[[1,1],[2,1],[3,1],[1,2]]},{"name":"L","cells":[[0,0],[1,0],[2,0],[0,1]]},{"name":"Z","cells":[[3,0],[4,0],[4,1],[5,1]]},{"name":"T","cells":[[5,0],[6,0],[7,0],[6,1]]}];
+const puzzleSolution = [{ "name": "I", "cells": [[19, 16], [19, 17], [19, 18], [19, 19]] }, { "name": "J", "cells": [[9, 17], [9, 18], [8, 19], [9, 19]] }, { "name": "I", "cells": [[15, 19], [16, 19], [17, 19], [18, 19]] }, { "name": "J", "cells": [[10, 18], [10, 19], [11, 19], [12, 19]] }, { "name": "T", "cells": [[17, 17], [16, 18], [17, 18], [18, 18]] }, { "name": "I", "cells": [[16, 14], [16, 15], [16, 16], [16, 17]] }, { "name": "S", "cells": [[7, 18], [8, 18], [6, 19], [7, 19]] }, { "name": "I", "cells": [[10, 14], [10, 15], [10, 16], [10, 17]] }, { "name": "S", "cells": [[5, 18], [6, 18], [4, 19], [5, 19]] }, { "name": "L", "cells": [[11, 16], [11, 17], [11, 18], [12, 18]] }, { "name": "T", "cells": [[18, 15], [17, 16], [18, 16], [18, 17]] }, { "name": "Z", "cells": [[15, 17], [14, 18], [15, 18], [14, 19]] }, { "name": "T", "cells": [[7, 16], [6, 17], [7, 17], [8, 17]] }, { "name": "I", "cells": [[8, 13], [8, 14], [8, 15], [8, 16]] }, { "name": "T", "cells": [[19, 13], [18, 14], [19, 14], [19, 15]] }, { "name": "L", "cells": [[12, 17], [13, 17], [13, 18], [13, 19]] }, { "name": "L", "cells": [[10, 13], [11, 13], [11, 14], [11, 15]] }, { "name": "I", "cells": [[7, 12], [7, 13], [7, 14], [7, 15]] }, { "name": "T", "cells": [[5, 15], [5, 16], [6, 16], [5, 17]] }, { "name": "I", "cells": [[9, 13], [9, 14], [9, 15], [9, 16]] }, { "name": "S", "cells": [[3, 18], [4, 18], [2, 19], [3, 19]] }, { "name": "T", "cells": [[6, 13], [5, 14], [6, 14], [6, 15]] }, { "name": "Z", "cells": [[15, 15], [14, 16], [15, 16], [14, 17]] }, { "name": "I", "cells": [[0, 16], [0, 17], [0, 18], [0, 19]] }, { "name": "J", "cells": [[13, 14], [13, 15], [12, 16], [13, 16]] }, { "name": "Z", "cells": [[2, 17], [1, 18], [2, 18], [1, 19]] }, { "name": "J", "cells": [[17, 13], [18, 13], [17, 14], [17, 15]] }, { "name": "I", "cells": [[14, 12], [14, 13], [14, 14], [14, 15]] }, { "name": "I", "cells": [[1, 14], [1, 15], [1, 16], [1, 17]] }, { "name": "O", "cells": [[10, 11], [11, 11], [10, 12], [11, 12]] }, { "name": "I", "cells": [[15, 11], [15, 12], [15, 13], [15, 14]] }, { "name": "T", "cells": [[16, 11], [16, 12], [17, 12], [16, 13]] }, { "name": "J", "cells": [[0, 13], [1, 13], [0, 14], [0, 15]] }, { "name": "O", "cells": [[18, 11], [19, 11], [18, 12], [19, 12]] }, { "name": "J", "cells": [[12, 13], [13, 13], [12, 14], [12, 15]] }, { "name": "J", "cells": [[13, 10], [13, 11], [12, 12], [13, 12]] }, { "name": "O", "cells": [[3, 16], [4, 16], [3, 17], [4, 17]] }, { "name": "L", "cells": [[2, 15], [3, 15], [4, 15], [2, 16]] }, { "name": "L", "cells": [[14, 10], [15, 10], [16, 10], [14, 11]] }, { "name": "T", "cells": [[4, 12], [4, 13], [5, 13], [4, 14]] }, { "name": "L", "cells": [[17, 10], [18, 10], [19, 10], [17, 11]] }, { "name": "O", "cells": [[18, 8], [19, 8], [18, 9], [19, 9]] }, { "name": "I", "cells": [[14, 9], [15, 9], [16, 9], [17, 9]] }, { "name": "J", "cells": [[9, 10], [9, 11], [8, 12], [9, 12]] }, { "name": "S", "cells": [[17, 7], [18, 7], [16, 8], [17, 8]] }, { "name": "I", "cells": [[15, 5], [15, 6], [15, 7], [15, 8]] }, { "name": "O", "cells": [[2, 13], [3, 13], [2, 14], [3, 14]] }, { "name": "J", "cells": [[10, 10], [11, 10], [12, 10], [12, 11]] }, { "name": "I", "cells": [[16, 4], [16, 5], [16, 6], [16, 7]] }, { "name": "Z", "cells": [[14, 7], [13, 8], [14, 8], [13, 9]] }, { "name": "T", "cells": [[19, 5], [18, 6], [19, 6], [19, 7]] }, { "name": "I", "cells": [[19, 1], [19, 2], [19, 3], [19, 4]] }, { "name": "Z", "cells": [[18, 4], [17, 5], [18, 5], [17, 6]] }, { "name": "J", "cells": [[10, 8], [10, 9], [11, 9], [12, 9]] }, { "name": "S", "cells": [[6, 11], [7, 11], [5, 12], [6, 12]] }, { "name": "T", "cells": [[11, 6], [10, 7], [11, 7], [11, 8]] }, { "name": "T", "cells": [[10, 4], [10, 5], [11, 5], [10, 6]] }, { "name": "I", "cells": [[12, 5], [12, 6], [12, 7], [12, 8]] }, { "name": "J", "cells": [[6, 10], [7, 10], [8, 10], [8, 11]] }, { "name": "O", "cells": [[11, 3], [12, 3], [11, 4], [12, 4]] }, { "name": "I", "cells": [[6, 9], [7, 9], [8, 9], [9, 9]] }, { "name": "T", "cells": [[16, 3], [17, 3], [18, 3], [17, 4]] }, { "name": "L", "cells": [[18, 1], [16, 2], [17, 2], [18, 2]] }, { "name": "J", "cells": [[6, 7], [6, 8], [7, 8], [8, 8]] }, { "name": "L", "cells": [[17, 0], [18, 0], [19, 0], [17, 1]] }, { "name": "T", "cells": [[13, 5], [13, 6], [14, 6], [13, 7]] }, { "name": "T", "cells": [[1, 11], [0, 12], [1, 12], [2, 12]] }, { "name": "T", "cells": [[2, 11], [3, 11], [4, 11], [3, 12]] }, { "name": "J", "cells": [[7, 7], [8, 7], [9, 7], [9, 8]] }, { "name": "L", "cells": [[10, 2], [11, 2], [12, 2], [10, 3]] }, { "name": "Z", "cells": [[15, 3], [14, 4], [15, 4], [14, 5]] }, { "name": "T", "cells": [[7, 5], [6, 6], [7, 6], [8, 6]] }, { "name": "J", "cells": [[3, 10], [4, 10], [5, 10], [5, 11]] }, { "name": "T", "cells": [[13, 2], [13, 3], [14, 3], [13, 4]] }, { "name": "T", "cells": [[9, 4], [8, 5], [9, 5], [9, 6]] }, { "name": "T", "cells": [[4, 8], [3, 9], [4, 9], [5, 9]] }, { "name": "L", "cells": [[0, 10], [1, 10], [2, 10], [0, 11]] }, { "name": "S", "cells": [[2, 8], [3, 8], [1, 9], [2, 9]] }, { "name": "T", "cells": [[5, 6], [4, 7], [5, 7], [5, 8]] }, { "name": "O", "cells": [[14, 1], [15, 1], [14, 2], [15, 2]] }, { "name": "T", "cells": [[0, 7], [0, 8], [1, 8], [0, 9]] }, { "name": "I", "cells": [[10, 1], [11, 1], [12, 1], [13, 1]] }, { "name": "S", "cells": [[8, 3], [9, 3], [7, 4], [8, 4]] }, { "name": "J", "cells": [[3, 5], [3, 6], [2, 7], [3, 7]] }, { "name": "T", "cells": [[4, 4], [4, 5], [5, 5], [4, 6]] }, { "name": "I", "cells": [[10, 0], [11, 0], [12, 0], [13, 0]] }, { "name": "J", "cells": [[6, 3], [7, 3], [6, 4], [6, 5]] }, { "name": "J", "cells": [[14, 0], [15, 0], [16, 0], [16, 1]] }, { "name": "L", "cells": [[9, 1], [7, 2], [8, 2], [9, 2]] }, { "name": "J", "cells": [[5, 2], [6, 2], [5, 3], [5, 4]] }, { "name": "T", "cells": [[1, 5], [0, 6], [1, 6], [1, 7]] }, { "name": "L", "cells": [[1, 4], [2, 4], [2, 5], [2, 6]] }, { "name": "S", "cells": [[8, 0], [9, 0], [7, 1], [8, 1]] }, { "name": "J", "cells": [[1, 3], [2, 3], [3, 3], [3, 4]] }, { "name": "I", "cells": [[0, 2], [0, 3], [0, 4], [0, 5]] }, { "name": "J", "cells": [[2, 2], [3, 2], [4, 2], [4, 3]] }, { "name": "L", "cells": [[1, 1], [2, 1], [3, 1], [1, 2]] }, { "name": "L", "cells": [[0, 0], [1, 0], [2, 0], [0, 1]] }, { "name": "Z", "cells": [[3, 0], [4, 0], [4, 1], [5, 1]] }, { "name": "T", "cells": [[5, 0], [6, 0], [7, 0], [6, 1]] }];
 
 function initPuzzleQueue() {
-    pieceQueue = puzzleSolution.map((p, idx) => ({...p, targetIdx: idx + 1}));
+    pieceQueue = puzzleSolution.map((p, idx) => ({ ...p, targetIdx: idx + 1 }));
 }
 
 // ピースの絶対座標リストからローカル配置(matrix)を作成するユーティリティ
@@ -453,3 +453,107 @@ document.getElementById('start-btn').addEventListener('click', () => {
 
 // 初期描画
 draw();
+
+// =============================================
+// スマホ用タッチ操作のサポート
+// =============================================
+
+// ---- スマホ用スタートボタン ----
+function doStartOrPause(btn) {
+    // 全ボタンのテキストを同期する内部ヘルパー
+    function syncBtnText(text) {
+        const d = document.getElementById('start-btn');
+        const m = document.getElementById('start-btn-mobile');
+        if (d) d.innerText = text;
+        if (m) m.innerText = text;
+    }
+
+    if (isGameOver || !isPlaying) {
+        if (isGameOver) {
+            init();
+        } else if (arena[9].every(val => val === 0)) {
+            init();
+        }
+        isPlaying = true;
+        syncBtnText('PAUSE');
+        lastTime = performance.now();
+        update();
+    } else {
+        isPlaying = false;
+        syncBtnText('RESUME');
+        cancelAnimationFrame(animationId);
+    }
+}
+
+// デスクトップ用スタートボタンをdoStartOrPauseで上書き
+const desktopStartBtn = document.getElementById('start-btn');
+if (desktopStartBtn) {
+    const oldListeners = desktopStartBtn.cloneNode(false);
+    desktopStartBtn.parentNode.replaceChild(oldListeners, desktopStartBtn);
+    // replaceChildでリスナー削除後に再取得して再設定
+    document.getElementById('start-btn').addEventListener('click', () => {
+        doStartOrPause(document.getElementById('start-btn'));
+    });
+}
+
+// スマホ用スタートボタン
+const mobileStartBtn = document.getElementById('start-btn-mobile');
+if (mobileStartBtn) {
+    mobileStartBtn.addEventListener('click', () => doStartOrPause(mobileStartBtn));
+    // 画像ロード後に有効化
+    if (targetImage.complete && targetImage.naturalHeight !== 0) {
+        mobileStartBtn.disabled = false;
+        mobileStartBtn.innerText = 'START';
+    } else {
+        targetImage.addEventListener('load', () => {
+            mobileStartBtn.disabled = false;
+            mobileStartBtn.innerText = 'START';
+        });
+    }
+}
+
+// ---- 方向パッドボタン ----
+function addDpadBtn(id, action) {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    const fire = (e) => { e.preventDefault(); if (isPlaying) action(); };
+    btn.addEventListener('touchstart', fire, { passive: false });
+    btn.addEventListener('click', fire);
+}
+
+addDpadBtn('btn-left', () => playerMove(-1));
+addDpadBtn('btn-right', () => playerMove(1));
+addDpadBtn('btn-down', () => playerDrop());
+addDpadBtn('btn-drop', () => playerHardDrop());
+
+// ---- スワイプ操作（キャンバス上） ----
+let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartTime = Date.now();
+}, { passive: false });
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    if (!isPlaying) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    const dt = Date.now() - touchStartTime;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+
+    if (absDx < 10 && absDy < 10 && dt < 300) {
+        // タップ → ハードドロップ
+        playerHardDrop();
+    } else if (absDx > absDy) {
+        // 左右スワイプ → 移動
+        const cells = Math.max(1, Math.round(absDx / 15));
+        for (let i = 0; i < cells; i++) playerMove(dx > 0 ? 1 : -1);
+    } else if (dy > 20) {
+        // 下スワイプ → ハードドロップ
+        playerHardDrop();
+    }
+}, { passive: false });
