@@ -6,6 +6,8 @@ const nextContext = nextCanvas.getContext('2d');
 context.scale(15, 15);
 nextContext.scale(15, 15);
 
+const Y_OFFSET = 4; // 上部の余白（落下開始地点を高くするため）
+
 // 画像の読み込み（事前読み込み）
 const targetImage = new Image();
 targetImage.src = 'pinocchio.avif'; // コピーしたファイル名
@@ -56,7 +58,7 @@ function createMatrixFromCells(cells, targetIdx) {
     return matrix;
 }
 
-let arena = createMatrix(20, 20); // 10x10のパズルに縮小
+let arena = createMatrix(20, 20 + Y_OFFSET); // 20列 x 24行
 
 const player = {
     pos: { x: 0, y: 0 },
@@ -103,8 +105,8 @@ function merge(arena, player) {
             if (value !== 0) {
                 // 配置されたかどうかの判定（座標が合っているか）
                 // プレイヤの現在の絶対座標 (x + player.pos.x, y + player.pos.y) が
-                // ピースが元々あった画像上の座標 (value.imgX, value.imgY) と一致するかチェック
-                const isCorrect = (x + player.pos.x === value.imgX) && (y + player.pos.y === value.imgY);
+                // ピースが元々あった画像上の座標 (value.imgX, value.imgY) とオフセットを加味して一致するかチェック
+                const isCorrect = (x + player.pos.x === value.imgX) && (y + player.pos.y === value.imgY + Y_OFFSET);
                 arena[y + player.pos.y][x + player.pos.x] = {
                     id: value.id,
                     imgX: value.imgX,
@@ -174,7 +176,7 @@ function drawBackground() {
     if (targetImage.complete && targetImage.naturalHeight !== 0) {
         // 背景全体を薄く表示する
         context.globalAlpha = 0.8; // ガイドとして適切な明るさに調整
-        context.drawImage(targetImage, 0, 0, 20, 20);
+        context.drawImage(targetImage, 0, Y_OFFSET, 20, 20); // Y_OFFSET分下にずらして描画
         context.globalAlpha = 1.0;
 
         // グリッド線を描く
@@ -188,12 +190,12 @@ function drawBackground() {
 }
 
 function draw() {
-    // 画面をクリア（これがないと半透明の黒が蓄積して真っ暗になる）
-    context.clearRect(0, 0, 20, 20);
+    // 画面をクリア（20x24の全範囲）
+    context.clearRect(0, 0, 20, 20 + Y_OFFSET);
 
     // 下地の色を塗る（背景画像が見やすい程度の暗さ）
     context.fillStyle = '#050510';
-    context.fillRect(0, 0, 20, 20);
+    context.fillRect(0, 0, 20, 20 + Y_OFFSET);
 
     drawBackground();
 
@@ -279,7 +281,7 @@ function playerDrop() {
 
 function playerHardDrop() {
     let dropDistance = 0;
-    while (!collide(arena, player) && dropDistance < 20) {
+    while (!collide(arena, player) && dropDistance < (20 + Y_OFFSET)) {
         player.pos.y++;
         dropDistance++;
     }
@@ -418,7 +420,7 @@ function gameOver() {
 }
 
 function init() {
-    arena = createMatrix(20, 20);
+    arena = createMatrix(20, 20 + Y_OFFSET);
     player.score = 0;
     player.lines = 0;
     player.piecesPlaced = 0;
