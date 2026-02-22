@@ -383,9 +383,28 @@ function update(time = 0) {
 
 function updateScore() {
     // スコアの代わりに残りピース数などを表示しても良い
-    document.getElementById('score').innerText = player.score;
-    document.getElementById('level').innerText = player.level;
-    document.getElementById('lines').innerText = 100 - player.piecesPlaced; // 残りピース数にする
+    const scoreVal = player.score;
+    const levelVal = player.level;
+    const linesVal = 100 - player.piecesPlaced;
+
+    // スマホ/共有表示
+    document.getElementById('score').innerText = scoreVal;
+    document.getElementById('level').innerText = levelVal;
+    document.getElementById('lines').innerText = linesVal;
+
+    // デスクトップ用表示の同期
+    const scoreD = document.getElementById('score-d');
+    const levelD = document.getElementById('level-d');
+    const linesD = document.getElementById('lines-d');
+    if (scoreD) scoreD.innerText = scoreVal;
+    if (levelD) levelD.innerText = levelVal;
+    if (linesD) linesD.innerText = linesVal;
+
+    // 画面内HUD: レベル表示の更新
+    const canvasLevel = document.getElementById('canvas-level-display');
+    if (canvasLevel) {
+        canvasLevel.innerText = `Level ${levelVal}`;
+    }
 }
 
 function gameOver() {
