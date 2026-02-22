@@ -305,9 +305,9 @@ h3 {
 
     /* キャンバスコンテナをアスペクト比を保持しながら最大化 */
     .canvas-container {
-        width: min(100vw - 16px, calc((100vh - 240px) * 5 / 6));
-        height: min((100vw - 16px) * 6 / 5, calc(100vh - 240px));
-        aspect-ratio: 5 / 6;
+        width: min(100vw - 16px, calc((100vh - 240px) * 4 / 5));
+        height: min((100vw - 16px) * 5 / 4, calc(100vh - 240px));
+        aspect-ratio: 4 / 5;
     }
 
     /* canvasをコンテナにぴったり合わせる */

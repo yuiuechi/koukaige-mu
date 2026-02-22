@@ -6,7 +6,7 @@ const nextContext = nextCanvas.getContext('2d');
 context.scale(15, 15);
 nextContext.scale(15, 15);
 
-const Y_OFFSET = 4; // 上部の余白（落下開始地点を高くするため）
+const Y_OFFSET = 5; // 上部の余白（落下開始地点を高くするため）
 
 // 画像の読み込み（事前読み込み）
 const targetImage = new Image();
