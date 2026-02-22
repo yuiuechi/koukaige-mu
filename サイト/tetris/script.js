@@ -140,14 +140,18 @@ function drawMatrix(matrix, offset, ctx) {
                     const srcX = value.imgX * srcW;
                     const srcY = value.imgY * srcH;
 
+                    // 背景が透けないように、まず黒色（または背景色）で塗りつぶす（完全不透明を保証）
+                    ctx.fillStyle = '#050510';
+                    ctx.fillRect(drawX, drawY, 1, 1);
+
                     ctx.drawImage(
                         targetImage,
                         srcX, srcY, srcW, srcH, // 元画像からの切り出し元
                         drawX, drawY, 1, 1      // Canvasへの描画先（1x1のスケール）
                     );
 
-                    // ピースの境界線を少しだけ引く（見やすくするため）
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+                    // ピースの境界線を不透明にする（見やすくするため）
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
                     ctx.lineWidth = 0.05;
                     ctx.strokeRect(drawX, drawY, 1, 1);
 
