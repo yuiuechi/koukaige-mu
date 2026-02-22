@@ -169,7 +169,7 @@ function drawMatrix(matrix, offset, ctx) {
 function drawBackground() {
     if (targetImage.complete && targetImage.naturalHeight !== 0) {
         // 背景全体を薄く表示する
-        context.globalAlpha = 0.7; // 0.4からさらに視認性を高めるため引き上げ
+        context.globalAlpha = 0.9; // 0.7からさらに視認性を高めるため引き上げ
         context.drawImage(targetImage, 0, 0, 20, 20);
         context.globalAlpha = 1.0;
 
