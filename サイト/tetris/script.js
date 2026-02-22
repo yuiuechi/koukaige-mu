@@ -197,11 +197,10 @@ function draw() {
     context.globalAlpha = 1.0;
     drawMatrix(arena, { x: 0, y: 0 }, context);
 
-    // 操作中のブロックを描画（半透明にして背景を透かす）
+    // 操作中のブロックを描画（不透明で鮮明に表示）
     if (player.matrix) {
-        context.globalAlpha = 0.7;
+        context.globalAlpha = 1.0;
         drawMatrix(player.matrix, player.pos, context);
-        context.globalAlpha = 1.0; // 戻しておく
     }
 }
 
