@@ -169,7 +169,7 @@ function drawMatrix(matrix, offset, ctx) {
 function drawBackground() {
     if (targetImage.complete && targetImage.naturalHeight !== 0) {
         // 背景全体を薄く表示する
-        context.globalAlpha = 0.9; // 0.7からさらに視認性を高めるため引き上げ
+        context.globalAlpha = 0.8; // ガイドとして適切な明るさに調整
         context.drawImage(targetImage, 0, 0, 20, 20);
         context.globalAlpha = 1.0;
 
@@ -193,12 +193,15 @@ function draw() {
 
     drawBackground();
 
-    // 既に置かれたブロックを描画
+    // 既に置かれたブロックを描画（これらは不透明で固定）
+    context.globalAlpha = 1.0;
     drawMatrix(arena, { x: 0, y: 0 }, context);
 
-    // 操作中のブロックを描画
+    // 操作中のブロックを描画（半透明にして背景を透かす）
     if (player.matrix) {
+        context.globalAlpha = 0.7;
         drawMatrix(player.matrix, player.pos, context);
+        context.globalAlpha = 1.0; // 戻しておく
     }
 }
 
