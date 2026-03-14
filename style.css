@@ -111,6 +111,10 @@ body {
     background-image: url('tetris/pinocchio.avif');
 }
 
+.geometry-dash-bg {
+    background-image: url('geometry-dash/player.jpeg');
+}
+
 .placeholder-bg-1 {
     background: linear-gradient(45deg, #2b1055, #7597de);
 }

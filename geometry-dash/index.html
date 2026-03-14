@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Dash Clone - koukaige-mu</title>
+    <meta name="description" content="ブラウザで遊べるジオメトリーダッシュ風のアクションゲームです。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="start-screen" class="overlay">
+                <h1 class="glitch-text" data-text="GEOMETRY DASH">GEOMETRY DASH</h1>
+                <p>SHAPING YOUR REFLEXES</p>
+                <div class="instructions">
+                    <span>Space or Click to Jump</span>
+                </div>
+                <button id="start-button">START SESSION</button>
+            </div>
+            <div id="game-over-screen" class="overlay hidden">
+                <h2 class="death-text">CRASHED</h2>
+                <div class="score-container">
+                    <span class="label">FINAL SCORE</span>
+                    <span id="final-score">0</span>
+                </div>
+                <button id="restart-button">RETRY SYSTEM</button>
+            </div>
+            <div id="hud">
+                <div class="hud-item score-data">
+                    <span class="hud-label">SCORE:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="hud-item stats-data">
+                    <div class="stat-row">
+                        <span class="hud-label">DIST:</span>
+                        <span class="stat-val"><span id="distance-display">0</span>m</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="hud-label">SPD:</span>
+                        <span class="stat-val"><span id="speed-display">0</span>km/h</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+
+</html>
